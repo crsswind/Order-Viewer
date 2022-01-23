@@ -1,0 +1,51 @@
+version: '3'
+services:
+  db:
+    image: postgres:13.1
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - APP_DB_USER=orders
+      - APP_DB_PASS=orders
+      - APP_DB_NAME=orders
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+
+  import:
+    image: order-viewer-import:latest
+    environment:
+      - APP_DB_HOST=db
+      - APP_DB_PORT=5432
+      - APP_DB_USER=orders
+      - APP_DB_PASS=orders
+      - APP_DB_NAME=orders
+    depends_on:
+      - db
+  api:
+    image: order-viewer:latest
+    environment:
+      - APP_DB_HOST=db
+      - APP_DB_PORT=5432
+      - APP_DB_USER=orders
+      - APP_DB_PASS=orders
+      - APP_DB_NAME=orders
+    depends_on:
+      - db
+  nginx:
+    image: nginx:latest
+    container_name: web
+    volumes: 
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/static:/usr/share/nginx/html/orders
+    ports:
+      - 8080:80
+    depends_on: 
+      - api
+
+  

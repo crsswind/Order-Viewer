@@ -1,0 +1,21 @@
+id,order_id,price_per_unit,quantity,product
+1,1,1.3454,10,Corrugated Box
+2,2,23.14,11,Corrugated Box
+3,3,123.0345,12,Corrugated Box
+4,4,,13,Corrugated Box
+5,5,100,14,Corrugated Box
+6,6,1.5454,15,Corrugated Box
+7,7,25.14,16,Corrugated Box
+8,8,133.0345,17,Corrugated Box
+9,9,13.456,18,Corrugated Box
+10,10,110,19,Corrugated Box
+11,1,45.2334,20,Hand sanitizer
+12,2,,21,Hand sanitizer
+13,3,273.1234,22,Hand sanitiZER
+14,4,11.45,23,Hand sanitizer
+15,5,12.467,24,Hand sanitizer
+16,6,11,25,Hand sanitizer
+17,7,123,26,Hand sanitizer
+18,8,173.1234,27,Hand sanitizer
+19,9,23.876,28,Hand sanitizer
+20,10,120,29,Hand sanitizer
